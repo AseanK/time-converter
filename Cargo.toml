@@ -1,0 +1,16 @@
+[package]
+name = "web_test"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+eframe = {version = "^0.27.2"}
+egui = {version = "^0.27.2"}
+egui_extras = {version = "0.27.2", features = ["datepicker"] }
+chrono = "0.4.38"
+reqwest = {version = "^0.12", features = ["json"]}
+serde_json ={version = "^1.0"}
+tokio = { version = "^1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
