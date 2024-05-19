@@ -92,6 +92,8 @@ impl eframe::App for MyApp {
             self.res_time = time.to_string();
         }
 
+        let zones = ["America/Los_Angeles", "America/New_York", "Asia/Seoul"];
+
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.vertical_centered(|ui| {
                 ui.heading("Convert");
@@ -100,6 +102,26 @@ impl eframe::App for MyApp {
             ui.horizontal(|ui| {
                 ui.add_sized([120.0, 50.0], egui::Label::new("Choose Date: "));
                 DatePickerButton::new(&mut self.date).ui(ui);
+            });
+            ui.horizontal(|ui| {
+                ui.add_sized([120.0, 50.0], egui::Label::new("From: "));
+                egui::ComboBox::from_id_source("from_id")
+                    .selected_text(format!("{}", self.from))
+                    .show_ui(ui, |ui| {
+                        for zone in zones {
+                            ui.selectable_value(&mut self.from, zone.to_string(), zone);
+                        }
+                    });
+            });
+            ui.horizontal(|ui| {
+                ui.add_sized([120.0, 50.0], egui::Label::new("To: "));
+                egui::ComboBox::from_id_source("To_id")
+                    .selected_text(format!("{}", self.to))
+                    .show_ui(ui, |ui| {
+                        for zone in zones {
+                            ui.selectable_value(&mut self.to, zone.to_string(), zone);
+                        }
+                    });
             });
             ui.horizontal(|ui| {
                 ui.add_sized([120.0, 50.0], egui::Label::new("Enter Hour: "));
